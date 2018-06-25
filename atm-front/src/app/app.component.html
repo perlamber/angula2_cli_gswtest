@@ -1,0 +1,39 @@
+<h1>{{title}}</h1>
+
+
+<div class="w3-row padding-top-8">
+	<form class="withdraw-form">
+		<div class="w3-row">
+			<h4>Selecione seu Banco</h4>
+
+			<span *ngIf="banks == undefined">Nenhum banco cadastrado.</span>
+
+			<mat-button-toggle-group required [(ngModel)]="accountForm.bankId"
+				name="bank" aria-label="Your Bank" class=""
+				*ngIf="banks != undefined"> <mat-button-toggle
+				*ngFor="let bank of banks" [value]="bank.id">{{bank.name}}</mat-button-toggle>
+			</mat-button-toggle-group>
+		</div>
+		<div class="w3-row padding-top-8">
+			<mat-form-field> <input matInput name="conta"
+				type="number" placeholder="Numero da Conta" required
+				[(ngModel)]="accountForm.accountNumber" /> </mat-form-field>
+		</div>
+		<div class="w3-row padding-top-8">
+			<mat-form-field> <input matInput type="password"
+				name="senha" placeholder="Senha" required
+				[(ngModel)]="accountForm.password" /> </mat-form-field>
+		</div>
+		<div class="w3-row padding-top-8">
+			<mat-form-field> <input matInput type="number"
+				name="valor" placeholder="Valor" required
+				[(ngModel)]="accountForm.value"> </mat-form-field>
+		</div>
+		<button mat-raised-button matTooltip="Use: 123456"
+			(click)="withdraw()">Sacar Valor</button>
+		<div class="w3-row padding-top-8">
+			<mat-card>{{ retur }}</mat-card>
+		</div>
+
+	</form>
+</div>
